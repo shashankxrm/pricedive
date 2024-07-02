@@ -5,6 +5,7 @@ import { getAllProducts } from "@/lib/actions"
 import ProductCard from "@/components/ProductCard"
 import Searchbar from "@/components/Searchbar"
 
+
 const Home = async () => {
   const allProducts = await getAllProducts();
   return (
