@@ -1,17 +1,16 @@
 "use client"
 
 import { FormEvent, Fragment, useState } from 'react'
-import { Dialog, Transition } from '@headlessui/react'
+import { Dialog, DialogPanel, Transition, TransitionChild } from '@headlessui/react'
 import Image from 'next/image'
 import { addUserEmailToProduct } from '@/lib/actions'
-import { PopoverOverlayProps } from '@headlessui/react'
 
 interface Props {
   productId: string
 }
 
-const Modal = ({ productId }: Props) => {
-  let [isOpen, setIsOpen] = useState(true)
+const Modal = ({productId}: Props) => {
+  let [isOpen, setIsOpen] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [email, setEmail] = useState('');
 
@@ -30,16 +29,16 @@ const Modal = ({ productId }: Props) => {
 
   const closeModal = () => setIsOpen(false);
 
+
   return (
     <>
-      <button type="button" className="btn" onClick={openModal}>
+      <button type="button" className='btn' onClick={openModal}>
         Track
       </button>
-
       <Transition appear show={isOpen} as={Fragment}>
-        <Dialog as="div" onClose={closeModal} className="dialog-container">
+        <Dialog as="div" onClose={closeModal} className='dialog-container'>
           <div className="min-h-screen px-4 text-center">
-            <Transition.Child
+            <TransitionChild
               as={Fragment}
               enter="ease-out duration-300"
               enterFrom="opacity-0"
@@ -48,17 +47,16 @@ const Modal = ({ productId }: Props) => {
               leaveFrom="opacity-100"
               leaveTo="opacity-0"
             >
-              <Dialog className="fixed inset-0" onClose={function (value: boolean): void {
-                              throw new Error('Function not implemented.')
-                          } } /> 
-            </Transition.Child>
+              <DialogPanel className="fixed inset-0 bg-black bg-opacity-30" />
+            </TransitionChild>
 
             <span
               className="inline-block h-screen align-middle"
               aria-hidden="true"
-            />
-            
-            <Transition.Child
+            >
+              &#8203;
+            </span>
+            <TransitionChild
               as={Fragment}
               enter="ease-out duration-300"
               enterFrom="opacity-0 scale-95"
@@ -67,11 +65,11 @@ const Modal = ({ productId }: Props) => {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <div className="dialog-content">
+              <DialogPanel className="inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
                 <div className="flex flex-col">
                   <div className="flex justify-between">
                     <div className="p-3 border border-gray-200 rounded-10">
-                      <Image 
+                      <Image
                         src="/assets/icons/logo.svg"
                         alt="logo"
                         width={28}
@@ -79,7 +77,7 @@ const Modal = ({ productId }: Props) => {
                       />
                     </div>
 
-                    <Image 
+                    <Image
                       src="/assets/icons/x-close.svg"
                       alt="close"
                       width={24}
@@ -103,14 +101,14 @@ const Modal = ({ productId }: Props) => {
                     Email address
                   </label>
                   <div className="dialog-input_container">
-                    <Image 
+                    <Image
                       src="/assets/icons/mail.svg"
                       alt='mail'
                       width={18}
                       height={18}
                     />
 
-                    <input 
+                    <input
                       required
                       type="email"
                       id="email"
@@ -127,8 +125,8 @@ const Modal = ({ productId }: Props) => {
                     {isSubmitting ? 'Submitting...' : 'Track'}
                   </button>
                 </form>
-              </div>
-            </Transition.Child>
+              </DialogPanel>
+            </TransitionChild>
           </div>
         </Dialog>
       </Transition>

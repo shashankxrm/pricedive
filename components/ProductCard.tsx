@@ -1,34 +1,38 @@
-import { Product } from '../types/types';
-import Image from 'next/image';
+import { Product } from '../types/index';
 import Link from 'next/link';
-import React from 'react'
+import Image from 'next/image';
 
-interface Props {
+interface props {
   product: Product;
 }
- 
-const ProductCard = ({ product }: Props) => {
+
+const ProductCard = ({product} : props) => {
   return (
-    <Link href={`/products/${product._id}`} className="product-card">
-      <div className="product-card_img-container">
+    <Link
+      href={`/products/${product._id}`}
+      className='product-card'
+    >
+      <div className='product-card_img-container'>
         <Image 
-          src={product.image}
-          alt={product.title}
-          width={200}
+          src={product.image} 
+          alt={product.title} 
+          width={200} 
           height={200}
-          className="product-card_img"
+          className='product-card_img'
         />
       </div>
 
       <div className="flex flex-col gap-3">
-        <h3 className="product-title">{product.title}</h3>
+        <h3 className='product-title'>{product.title}</h3>
 
-        <div className="flex justify-between">
-          <p className="text-black opacity-50 text-lg capitalize">
-            {product.category}
+        <div className="flex flex-col justify-between">
+          <p className='text-black opacity-50 text-lg capitalize'>
+            {product.category.map((category) => (
+              <span key={category.categoryItem} className='category'>{category.categoryItem}, </span>
+            ))}
           </p>
-
-          <p className="text-black text-lg font-semibold">
+          
+          <p className='text-black text-lg font-semibold'>
             <span>{product?.currency}</span>
             <span>{product?.currentPrice}</span>
           </p>

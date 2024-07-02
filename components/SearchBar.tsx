@@ -1,56 +1,51 @@
-"use client"
-
+'use client'
 import { scrapeAndStoreProduct } from '@/lib/actions';
 import { FormEvent, useState } from 'react'
 
-const isValidAmazonProductURL = (url: string) => {
+const isValidAmazonProductLink = (url: string) => {
   try {
-    const parsedURL = new URL(url);
-    const hostname = parsedURL.hostname;
+    const parsedUrl = new URL(url);
+    const hostname = parsedUrl.hostname;
 
-    if(
-      hostname.includes('amazon.com') || 
-      hostname.includes ('amazon.') || 
-      hostname.endsWith('amazon')
-    ) {
+    if(hostname.includes('amazon.com') || hostname.includes('amazon.') || hostname.includes('amazon')) {
       return true;
     }
-  } catch (error) {
+  }
+  catch (error) {
     return false;
   }
-
-  return false;
 }
 
 const Searchbar = () => {
   const [searchPrompt, setSearchPrompt] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
-
+  const [ loading, setLoading ] = useState(false);
+  
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const isValidLink = isValidAmazonProductURL(searchPrompt);
+    const isValidLink = isValidAmazonProductLink(searchPrompt);
 
-    if(!isValidLink) return alert('Please provide a valid Amazon link')
+    if(!isValidLink) {
+      alert('Please enter a valid Amazon product link');
+    }
 
     try {
-      setIsLoading(true);
-
-      // Scrape the product page
+      setLoading(true);
+      // Scraping logic here
       const product = await scrapeAndStoreProduct(searchPrompt);
     } catch (error) {
       console.log(error);
     } finally {
-      setIsLoading(false);
+      setLoading(false);
     }
   }
 
   return (
-    <form 
-      className="flex flex-wrap gap-4 mt-12" 
+    <form
+      className="flex flex-wrap gap-4 mt-12"
       onSubmit={handleSubmit}
     >
-      <input 
+      <input
         type="text"
         value={searchPrompt}
         onChange={(e) => setSearchPrompt(e.target.value)}
@@ -58,13 +53,11 @@ const Searchbar = () => {
         className="searchbar-input"
       />
 
-      <button 
-        type="submit" 
+      <button
+        type="submit"
         className="searchbar-btn"
-        disabled={searchPrompt === ''}
-      >
-        {isLoading ? 'Searching...' : 'Search'}
-      </button>
+        disabled={searchPrompt === '' || loading}
+      > {loading? 'Searching...' : 'Search'}</button>
     </form>
   )
 }
