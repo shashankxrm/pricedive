@@ -7,7 +7,7 @@ const inter = Inter({ subsets: ["latin"] });
 const spaceGrotesk = Space_Grotesk({ subsets: ["latin"], weight:['300', '400', '500', '600', '700'] });
 
 export const metadata: Metadata = {
-  title: "PriceDive",
+  title: "Ecommerce Price Tracker",
   description: "track prices of products from different ecommerce websites effortlessly",
 };
 
