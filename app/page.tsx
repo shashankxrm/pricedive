@@ -1,3 +1,4 @@
+"use client"
 import HeroCarousel from "@/components/HeroCarousel"
 
 import Image from "next/image"
