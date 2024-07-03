@@ -1,5 +1,5 @@
 {
-  "name": "pricedive",
+  "name": "ecommerce-price-tracker",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,16 +9,17 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@headlessui/react": "^2.1.1",
-    "axios": "^1.7.2",
+    "@headlessui/react": "^2.0.3",
+    "@types/next": "^9.0.0",
+    "axios": "^1.7.1",
     "cheerio": "^1.0.0-rc.12",
-    "mongodb": "^6.8.0",
-    "mongoose": "^8.4.4",
-    "next": "14.2.4",
-    "nodemailer": "^6.9.14",
+    "mongoose": "^8.4.0",
+    "next": "14.2.3",
+    "nodemailer": "^6.9.13",
     "react": "^18",
     "react-dom": "^18",
-    "react-responsive-carousel": "^3.2.23"
+    "react-responsive-carousel": "^3.2.23",
+    "supports-color": "^8.1.1"
   },
   "devDependencies": {
     "@types/node": "^20",
