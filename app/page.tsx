@@ -3,7 +3,7 @@ import Image from 'next/image'
 import { getAllProducts } from '../lib/actions/index'
 import HeroCarousel from '../components/HeroCarousel'
 import ProductCard from '../components/ProductCard'
-import SearchBar from '../components/Searchbar'
+import SearchBar from '../components/SearchBar'
 
 
 const Home = async () => {
