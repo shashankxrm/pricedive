@@ -3,7 +3,8 @@ import Image from 'next/image'
 import { getAllProducts } from '../lib/actions/index'
 import HeroCarousel from '../components/HeroCarousel'
 import ProductCard from '../components/ProductCard'
-import Searchbar from '../components/Searchbar'
+import SearchBar from '../components/Searchbar'
+
 
 const Home = async () => {
   const allProducts = await getAllProducts();
@@ -31,7 +32,7 @@ const Home = async () => {
               Powerful, self-server product and growth analytics to help you convert, engage, and retain more.
             </p>
 
-            <Searchbar />
+            <SearchBar />
           </div>
 
           <HeroCarousel />
