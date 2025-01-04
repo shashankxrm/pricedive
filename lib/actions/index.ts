@@ -60,7 +60,7 @@ export async function getProductById(productId: string) {
 export async function getAllProducts() {
   try {
     await connectToDB();
-    const products = await Product.find();
+    const products = await Product.find().sort({ createdAt: -1 }); // Sort by createdAt in descending order
     if (!products) return [];
     return products;
   } catch (error: any) {
