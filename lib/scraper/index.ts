@@ -8,7 +8,7 @@ export async function scrapeAmazonProduct(url: string) {
   // BrightData proxy configuration
   const username = String(process.env.BRIGHTDATA_USERNAME);
   const password = String(process.env.BRIGHTDATA_PASSWORD);
-  const port = 22225;
+  const port = 33335;
   const session_id = (Math.random() * 1000000) | 0;
 
   const options = {
@@ -16,7 +16,7 @@ export async function scrapeAmazonProduct(url: string) {
       username: `${username}-session-${session_id}`,
       password: password,
     },
-    host: "brd.superproxy.io:22225",
+    host: "brd.superproxy.io:33335",
     port,
     rejectUnauthorized: false,
   };
